@@ -1,0 +1,44 @@
+syntax = "proto3";
+
+package proto;
+
+service DiseaseService {
+  rpc AddDisease(AddDiseaseRequest) returns (AddDiseaseResponse) {
+  }
+  rpc GetDiseases(GetDiseaseRequest) returns (GetDiseaseResponse) {
+  }
+  rpc GetDiseaseByID(GetDiseaseByIDRequest) returns (GetDiseaseByIDResponse) {
+  }
+}
+
+message Disease {
+  string id = 1;
+  string name = 2;
+  string description = 3;
+  string created_at = 4;
+  string updated_at = 5;
+}
+
+message AddDiseaseRequest {
+  string name = 1;
+  string description = 2;
+}
+
+message AddDiseaseResponse {
+  Disease Disease = 1;
+}
+
+message GetDiseaseRequest {
+}
+
+message GetDiseaseResponse {
+  repeated Disease Diseases = 1;
+}
+
+message GetDiseaseByIDRequest {
+  string id = 1;
+}
+
+message GetDiseaseByIDResponse {
+  Disease Disease = 1;
+}

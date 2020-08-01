@@ -1,0 +1,44 @@
+syntax = "proto3";
+
+package proto;
+
+service RoleService {
+  rpc AddRole(AddRoleRequest) returns (AddRoleResponse) {
+  }
+  rpc GetRoles(GetRoleRequest) returns (GetRoleResponse) {
+  }
+  rpc GetRoleByID(GetRoleByIDRequest) returns (GetRoleByIDResponse) {
+  }
+}
+
+message Role {
+  string id = 1;
+  string name = 2;
+  string description = 3;
+  string created_at = 4;
+  string updated_at = 5;
+}
+
+message AddRoleRequest {
+  string name = 1;
+  string description = 2;
+}
+
+message AddRoleResponse {
+  Role role = 1;
+}
+
+message GetRoleRequest {
+}
+
+message GetRoleResponse {
+  repeated Role roles = 1;
+}
+
+message GetRoleByIDRequest {
+  string id = 1;
+}
+
+message GetRoleByIDResponse {
+  Role role = 1;
+}

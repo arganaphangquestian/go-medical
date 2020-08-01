@@ -1,0 +1,44 @@
+syntax = "proto3";
+
+package proto;
+
+service GenderService {
+  rpc AddGender(AddGenderRequest) returns (AddGenderResponse) {
+  }
+  rpc GetGenders(GetGenderRequest) returns (GetGenderResponse) {
+  }
+  rpc GetGenderByID(GetGenderByIDRequest) returns (GetGenderByIDResponse) {
+  }
+}
+
+message Gender {
+  string id = 1;
+  string name = 2;
+  string description = 3;
+  string created_at = 4;
+  string updated_at = 5;
+}
+
+message AddGenderRequest {
+  string name = 1;
+  string description = 2;
+}
+
+message AddGenderResponse {
+  Gender Gender = 1;
+}
+
+message GetGenderRequest {
+}
+
+message GetGenderResponse {
+  repeated Gender Genders = 1;
+}
+
+message GetGenderByIDRequest {
+  string id = 1;
+}
+
+message GetGenderByIDResponse {
+  Gender Gender = 1;
+}

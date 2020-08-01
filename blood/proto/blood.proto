@@ -1,0 +1,44 @@
+syntax = "proto3";
+
+package proto;
+
+service BloodService {
+  rpc AddBlood(AddBloodRequest) returns (AddBloodResponse) {
+  }
+  rpc GetBloods(GetBloodRequest) returns (GetBloodResponse) {
+  }
+  rpc GetBloodByID(GetBloodByIDRequest) returns (GetBloodByIDResponse) {
+  }
+}
+
+message Blood {
+  string id = 1;
+  string name = 2;
+  string description = 3;
+  string created_at = 4;
+  string updated_at = 5;
+}
+
+message AddBloodRequest {
+  string name = 1;
+  string description = 2;
+}
+
+message AddBloodResponse {
+  Blood Blood = 1;
+}
+
+message GetBloodRequest {
+}
+
+message GetBloodResponse {
+  repeated Blood Bloods = 1;
+}
+
+message GetBloodByIDRequest {
+  string id = 1;
+}
+
+message GetBloodByIDResponse {
+  Blood Blood = 1;
+}

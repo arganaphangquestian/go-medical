@@ -1,0 +1,56 @@
+syntax = "proto3";
+
+package proto;
+
+service UserService {
+  rpc AddUser(AddUserRequest) returns (AddUserResponse) {
+  }
+  rpc GetUsers(GetUserRequest) returns (GetUserResponse) {
+  }
+  rpc GetUserByID(GetUserByIDRequest) returns (GetUserByIDResponse) {
+  }
+}
+
+message User {
+  string id = 1;
+  string name = 2;
+  string email = 3;
+  string address = 4;
+  uint32 role_id = 5;
+  uint32 gender_id = 6;
+  uint32 blood_id = 7;
+  string birth_of_date = 8;
+  string contact = 9;
+  string created_at = 10;
+  string updated_at = 11;
+}
+
+message AddUserRequest {
+  string name = 1;
+  string email = 2;
+  string address = 3;
+  uint32 role_id = 4;
+  uint32 gender_id = 5;
+  uint32 blood_id = 6;
+  string birth_of_date = 7;
+  string contact = 8;
+}
+
+message AddUserResponse {
+  User User = 1;
+}
+
+message GetUserRequest {
+}
+
+message GetUserResponse {
+  repeated User Users = 1;
+}
+
+message GetUserByIDRequest {
+  string id = 1;
+}
+
+message GetUserByIDResponse {
+  User User = 1;
+}
