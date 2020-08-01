@@ -13,7 +13,7 @@ type Service interface {
 	GetUserByID(ctx context.Context, id string) (*User, error)
 }
 
-// User struct Moel
+// User struct Model
 type User struct {
 	ID          primitive.ObjectID `json:"id" bson:"_id,omitempty"`
 	Name        string             `json:"name"`

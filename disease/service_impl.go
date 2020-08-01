@@ -23,6 +23,6 @@ func (d *diseaseService) GetDiseaseByID(ctx context.Context, id string) (*Diseas
 	return d.repository.GetDiseaseByID(ctx, id)
 }
 
-func (d *diseaseService) SearchProducts(ctx context.Context, query string) ([]Disease, error) {
+func (d *diseaseService) SearchDiseases(ctx context.Context, query string) ([]Disease, error) {
 	return d.repository.SearchProducts(ctx, query)
 }

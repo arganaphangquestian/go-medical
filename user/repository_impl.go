@@ -54,6 +54,7 @@ func (r *mongoRepository) AddUser(ctx context.Context, name string, email string
 		GenderID:    genderID,
 		BloodID:     bloodID,
 		BirthOfDate: birthOfDate,
+		Contact:     contact,
 	}
 	result, err := r.db.Database(databaseName).Collection("users").InsertOne(ctx, user)
 	if err != nil {
@@ -76,7 +77,7 @@ func (r *mongoRepository) GetUsers(ctx context.Context) ([]User, error) {
 
 	for cursor.Next(ctx) {
 		var user User
-		cursor.Decode(&user)
+		_ = cursor.Decode(&user)
 		users = append(users, user)
 	}
 	if err = cursor.Err(); err != nil {

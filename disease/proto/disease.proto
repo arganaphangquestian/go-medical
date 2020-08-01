@@ -29,6 +29,7 @@ message AddDiseaseResponse {
 }
 
 message GetDiseaseRequest {
+  string query = 1;
 }
 
 message GetDiseaseResponse {

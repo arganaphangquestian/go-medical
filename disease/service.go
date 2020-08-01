@@ -7,7 +7,7 @@ type Service interface {
 	AddDisease(ctx context.Context, name string, description string) error
 	GetDiseases(ctx context.Context) ([]Disease, error)
 	GetDiseaseByID(ctx context.Context, id string) (*Disease, error)
-	SearchProducts(ctx context.Context, query string) ([]Disease, error)
+	SearchDiseases(ctx context.Context, query string) ([]Disease, error)
 }
 
 // Disease struct Model

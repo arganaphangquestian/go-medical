@@ -1,0 +1,46 @@
+syntax = "proto3";
+
+package proto;
+
+service HistoryService {
+  rpc AddHistory(AddHistoryRequest) returns (AddHistoryResponse) {
+  }
+  rpc GetHistories(GetHistoryRequest) returns (GetHistoryResponse) {
+  }
+  rpc GetHistoryByID(GetHistoryByIDRequest) returns (GetHistoryByIDResponse) {
+  }
+}
+
+message History {
+  string id = 1;
+  string user_id = 2;
+  string disease_id = 3;
+  string note = 4;
+  string created_at = 5;
+  string updated_at = 6;
+}
+
+message AddHistoryRequest {
+  string user_id = 1;
+  string disease_id = 2;
+  string note = 3;
+}
+
+message AddHistoryResponse {
+  History History = 1;
+}
+
+message GetHistoryRequest {
+}
+
+message GetHistoryResponse {
+  repeated History Histories = 1;
+}
+
+message GetHistoryByIDRequest {
+  string id = 1;
+}
+
+message GetHistoryByIDResponse {
+  History History = 1;
+}

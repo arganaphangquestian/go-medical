@@ -2,97 +2,25 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="40a0830d-05b9-46b4-9d40-7c5eebd456b4" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.github/workflows/go.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/go-medical.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blood/app.dockerfile" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blood/client.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blood/cmd/blood/main.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blood/db.dockerfile" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blood/proto/blood.pb.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blood/proto/blood.proto" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blood/proto/compile.sh" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blood/repository.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blood/repository_impl.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blood/server.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blood/service.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blood/service_impl.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blood/up.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/disease/app.dockerfile" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/disease/client.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/disease/cmd/disease/main.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/disease/proto/compile.sh" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/disease/proto/disease.pb.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/disease/proto/disease.proto" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/disease/repository.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/disease/repository_impl.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/disease/server.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/disease/service.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/disease/service_impl.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docker-compose.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gateway/app.dockerfile" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gateway/gqlgen.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gateway/graph/generated/generated.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gateway/graph/model/models_gen.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gateway/graph/resolver.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gateway/graph/schema.graphql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gateway/graph/schema.resolvers.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gateway/server.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gender/app.dockerfile" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gender/client.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gender/cmd/gender/main.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gender/db.dockerfile" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gender/proto/compile.sh" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gender/proto/gender.pb.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gender/proto/gender.proto" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gender/repository.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gender/repository_impl.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gender/server.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gender/service.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gender/service_impl.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gender/up.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/go.sum" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/history/app.dockerfile" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/history/client.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/history/cmd/history/main.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/history/db.dockerfile" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/history/proto/compile.sh" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/history/repository.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/history/repository_impl.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/history/server.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/history/service.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/history/service_impl.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/history/up.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/metric/app.dockerfile" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/role/app.dockerfile" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/role/client.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/role/cmd/gender/main.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/role/db.dockerfile" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/role/proto/compile.sh" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/role/proto/role.pb.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/role/proto/role.proto" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/role/repository.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/role/repository_impl.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/role/server.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/role/service.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/role/service_impl.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/role/up.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user/app.dockerfile" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user/client.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user/cmd/gender/main.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user/proto/compile.sh" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user/proto/user.proto" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user/repository.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user/repository_impl.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user/server.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user/service.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user/service_impl.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/history/proto/history.proto" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/go-medical.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/go-medical.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blood/client.go" beforeDir="false" afterPath="$PROJECT_DIR$/blood/client.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blood/server.go" beforeDir="false" afterPath="$PROJECT_DIR$/blood/server.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/disease/client.go" beforeDir="false" afterPath="$PROJECT_DIR$/disease/client.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/disease/proto/disease.proto" beforeDir="false" afterPath="$PROJECT_DIR$/disease/proto/disease.proto" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/disease/server.go" beforeDir="false" afterPath="$PROJECT_DIR$/disease/server.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gender/client.go" beforeDir="false" afterPath="$PROJECT_DIR$/gender/client.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gender/server.go" beforeDir="false" afterPath="$PROJECT_DIR$/gender/server.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/history/client.go" beforeDir="false" afterPath="$PROJECT_DIR$/history/client.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/history/server.go" beforeDir="false" afterPath="$PROJECT_DIR$/history/server.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/role/client.go" beforeDir="false" afterPath="$PROJECT_DIR$/role/client.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/role/server.go" beforeDir="false" afterPath="$PROJECT_DIR$/role/server.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/client.go" beforeDir="false" afterPath="$PROJECT_DIR$/user/client.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/repository_impl.go" beforeDir="false" afterPath="$PROJECT_DIR$/user/repository_impl.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/server.go" beforeDir="false" afterPath="$PROJECT_DIR$/user/server.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/service.go" beforeDir="false" afterPath="$PROJECT_DIR$/user/service.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -133,10 +61,11 @@
     <property name="go.import.settings.migrated" value="true" />
     <property name="go.sdk.automatically.set" value="true" />
     <property name="go.tried.to.enable.integration.vgo.integrator" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/docker-compose.yaml" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/history/proto" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/history/proto" />
       <recent name="$PROJECT_DIR$/history" />
     </key>
   </component>
@@ -201,9 +130,9 @@
       <screen x="0" y="0" width="1366" height="768" />
     </state>
     <state x="278" y="105" width="800" height="527" key="Vcs.Push.Dialog.v2/0.0.1366.768@0.0.1366.768" timestamp="1596266926615" />
-    <state x="346" y="89" width="672" height="678" key="search.everywhere.popup" timestamp="1596266618300">
+    <state x="346" y="89" width="672" height="678" key="search.everywhere.popup" timestamp="1596268276125">
       <screen x="0" y="0" width="1366" height="768" />
     </state>
-    <state x="346" y="89" width="672" height="678" key="search.everywhere.popup/0.0.1366.768@0.0.1366.768" timestamp="1596266618300" />
+    <state x="346" y="89" width="672" height="678" key="search.everywhere.popup/0.0.1366.768@0.0.1366.768" timestamp="1596268276125" />
   </component>
 </project>
