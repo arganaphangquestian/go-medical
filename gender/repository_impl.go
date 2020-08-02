@@ -3,6 +3,7 @@ package gender
 import (
 	"context"
 	"github.com/jackc/pgx/v4"
+	"github.com/segmentio/ksuid"
 	"time"
 )
 
@@ -26,7 +27,9 @@ func NewPostgres(url string) (Repository, error) {
 }
 
 func (r *postgresRepository) Close() {
-	_ = r.db.Close(context.Background())
+	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
+	defer cancel()
+	_ = r.db.Close(ctx)
 }
 
 // AddGender repository implementation
@@ -35,7 +38,10 @@ func (r *postgresRepository) AddGender(ctx context.Context, name string, descrip
 		Name:        name,
 		Description: description,
 	}
-	_, err := r.db.Query(ctx, "INSERT INTO genders(name, description) VALUES($1, $2)", a.Name, a.Description)
+	res, err := r.db.Query(ctx, "INSERT INTO genders(id, name, description) VALUES($1, $2)", ksuid.New().String(), a.Name, a.Description)
+	if res != nil {
+		res.Close()
+	}
 	return err
 }
 

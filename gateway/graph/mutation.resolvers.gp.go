@@ -6,6 +6,7 @@ import (
 	"github.com/arganaphangquestian/go-medical/gateway/graph/model"
 	"log"
 	"strconv"
+	"time"
 )
 
 type mutationResolver struct {
@@ -13,6 +14,8 @@ type mutationResolver struct {
 }
 
 func (r *mutationResolver) CreateBlood(ctx context.Context, blood *model.InputBlood) (*model.Blood, error) {
+	ctx, cancel := context.WithTimeout(ctx, 3*time.Second)
+	defer cancel()
 	a, err := r.server.bloodClient.AddBlood(ctx, blood.Name, blood.Rhesus, *blood.Description)
 	if err != nil {
 		log.Println(err)
@@ -28,6 +31,8 @@ func (r *mutationResolver) CreateBlood(ctx context.Context, blood *model.InputBl
 }
 
 func (r *mutationResolver) CreateGender(ctx context.Context, gender *model.InputGender) (*model.Gender, error) {
+	ctx, cancel := context.WithTimeout(ctx, 3*time.Second)
+	defer cancel()
 	a, err := r.server.genderClient.AddGender(ctx, gender.Name, *gender.Description)
 	if err != nil {
 		log.Println(err)
@@ -42,6 +47,8 @@ func (r *mutationResolver) CreateGender(ctx context.Context, gender *model.Input
 }
 
 func (r *mutationResolver) CreateHistory(ctx context.Context, history *model.InputHistory) (*model.History, error) {
+	ctx, cancel := context.WithTimeout(ctx, 3*time.Second)
+	defer cancel()
 	a, err := r.server.historyClient.AddHistory(ctx, history.UserID, history.DiseaseID, *history.Note)
 	if err != nil {
 		log.Println(err)
@@ -57,6 +64,8 @@ func (r *mutationResolver) CreateHistory(ctx context.Context, history *model.Inp
 }
 
 func (r *mutationResolver) CreateRole(ctx context.Context, role *model.InputRole) (*model.Role, error) {
+	ctx, cancel := context.WithTimeout(ctx, 3*time.Second)
+	defer cancel()
 	a, err := r.server.roleClient.AddRole(ctx, role.Name, *role.Description)
 	if err != nil {
 		log.Println(err)
@@ -71,6 +80,8 @@ func (r *mutationResolver) CreateRole(ctx context.Context, role *model.InputRole
 }
 
 func (r *mutationResolver) CreateUser(ctx context.Context, user *model.InputUser) (*model.User, error) {
+	ctx, cancel := context.WithTimeout(ctx, 3*time.Second)
+	defer cancel()
 	roleID, err := strconv.ParseUint(user.RoleID, 10, 32)
 	if err != nil {
 		log.Println(err)
@@ -92,19 +103,21 @@ func (r *mutationResolver) CreateUser(ctx context.Context, user *model.InputUser
 		return nil, err
 	}
 	return &model.User{
-		ID: a.ID.String(),
-		Name: a.Name,
-		Email: a.Email,
-		Address: a.Address,
-		RoleID: fmt.Sprint(a.RoleID),
-		GenderID: fmt.Sprint(a.GenderID),
-		BloodID: fmt.Sprint(a.BloodID),
+		ID:          a.ID.String(),
+		Name:        a.Name,
+		Email:       a.Email,
+		Address:     a.Address,
+		RoleID:      fmt.Sprint(a.RoleID),
+		GenderID:    fmt.Sprint(a.GenderID),
+		BloodID:     fmt.Sprint(a.BloodID),
 		BirthOfDate: &a.BirthOfDate,
-		Contact: &a.Contact,
+		Contact:     &a.Contact,
 	}, nil
 }
 
 func (r *mutationResolver) CreateDisease(ctx context.Context, disease *model.InputDisease) (*model.Disease, error) {
+	ctx, cancel := context.WithTimeout(ctx, 3*time.Second)
+	defer cancel()
 	a, err := r.server.diseaseClient.AddDisease(ctx, disease.Name, *disease.Description)
 	if err != nil {
 		log.Println(err)

@@ -1,12 +1,13 @@
-FROM golang:alpine AS go-build
-WORKDIR /app
-COPY . /app
-RUN cd /app && go build -o disease
+FROM golang:1.13-alpine3.11 AS build
+RUN apk --no-cache add gcc g++ make ca-certificates
+WORKDIR /go/src/github.com/arganaphangquestian/go-medical
+COPY go.mod go.sum ./
+COPY vendor vendor
+COPY disease disease
+RUN GO111MODULE=on go build -mod vendor -o /go/bin/app ./disease/cmd/disease
 
-FROM alpine
-
-RUN apk update && apk add ca-certificates && rm -rf /var/cache/apk/*
-WORKDIR /app
-COPY --from=go-build /app/disease /app
+FROM alpine:3.11
+WORKDIR /usr/bin
+COPY --from=build /go/bin .
 EXPOSE 8080
-ENTRYPOINT ./disease
+CMD ["app"]

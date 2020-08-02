@@ -12,11 +12,17 @@
  - [x] Fix Postgres Lib
  - [x] GraphQL Schema
  - [x] GraphQL Query Resolver
- - [ ] GraphQL Mutation Resolver
+ - [x] GraphQL Mutation Resolver
  - [x] Fix GetByID Client
- - [ ] docker-compose.yaml
+ - [x] docker-compose.yaml
  - [ ] Auth Service
  - [ ] Deploy
+ 
+ 
+ ### Bugs
+  - [ ] Gender => unknown service proto.GenderService
+  - [ ] Disease => elastic: Error 404 (Not Found): no such index [type=index_not_found_exception]
+  - [ ] pgx conn busy
  
 
 ### Database Schema

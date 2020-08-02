@@ -13,15 +13,15 @@ func NewService(r Repository) Service {
 
 // AddBlood service implementation
 func (s *bloodService) AddBlood(ctx context.Context, name string, rhesus bool, description string) error {
-	return s.AddBlood(ctx, name, rhesus, description)
+	return s.repository.AddBlood(ctx, name, rhesus, description)
 }
 
 // GetBloods service implementation
 func (s *bloodService) GetBloods(ctx context.Context) ([]Blood, error) {
-	return s.GetBloods(ctx)
+	return s.repository.GetBloods(ctx)
 }
 
 // GetBloodByID service implementation
 func (s *bloodService) GetBloodByID(ctx context.Context, id string) (*Blood, error) {
-	return s.GetBloodByID(ctx, id)
+	return s.repository.GetBloodByID(ctx, id)
 }

@@ -303,7 +303,7 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 			return 0, false
 		}
 
-		return e.complexity.Mutation.CreateGender(childComplexity, args["gender"].(*model.InputGender)), true
+		return e.complexity.Mutation.CreateGender(childComplexity, args["user"].(*model.InputGender)), true
 
 	case "Mutation.createHistory":
 		if e.complexity.Mutation.CreateHistory == nil {
@@ -662,7 +662,7 @@ input InputDisease {
 
 type Mutation {
   createBlood(blood: InputBlood): Blood
-  createGender(gender: InputGender): Gender
+  createGender(user: InputGender): Gender
   createHistory(history: InputHistory): History
   createRole(role: InputRole): Role
   createUser(user: InputUser): User
@@ -716,13 +716,13 @@ func (ec *executionContext) field_Mutation_createGender_args(ctx context.Context
 	var err error
 	args := map[string]interface{}{}
 	var arg0 *model.InputGender
-	if tmp, ok := rawArgs["gender"]; ok {
+	if tmp, ok := rawArgs["user"]; ok {
 		arg0, err = ec.unmarshalOInputGender2ᚖgithubᚗcomᚋarganaphangquestianᚋgoᚑmedicalᚋgatewayᚋgraphᚋmodelᚐInputGender(ctx, tmp)
 		if err != nil {
 			return nil, err
 		}
 	}
-	args["gender"] = arg0
+	args["user"] = arg0
 	return args, nil
 }
 
@@ -1560,7 +1560,7 @@ func (ec *executionContext) _Mutation_createGender(ctx context.Context, field gr
 	fc.Args = args
 	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
 		ctx = rctx // use context from middleware stack in children
-		return ec.resolvers.Mutation().CreateGender(rctx, args["gender"].(*model.InputGender))
+		return ec.resolvers.Mutation().CreateGender(rctx, args["user"].(*model.InputGender))
 	})
 	if err != nil {
 		ec.Error(ctx, err)

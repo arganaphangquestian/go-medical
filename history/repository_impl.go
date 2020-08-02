@@ -26,7 +26,9 @@ func NewPostgres(url string) (Repository, error) {
 }
 
 func (r *postgresRepository) Close() {
-	_ = r.db.Close(context.Background())
+	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
+	defer cancel()
+	_ = r.db.Close(ctx)
 }
 
 func (r *postgresRepository) AddHistory(ctx context.Context, userID string, diseaseID string, note string) error {
@@ -35,7 +37,10 @@ func (r *postgresRepository) AddHistory(ctx context.Context, userID string, dise
 		DiseaseID: diseaseID,
 		Note:      note,
 	}
-	_, err := r.db.Query(ctx, "INSERT INTO histories(user_id, disease_id, note) VALUES($1, $2, $3)", a.UserID, a.DiseaseID, a.Note)
+	res, err := r.db.Query(ctx, "INSERT INTO histories(user_id, disease_id, note) VALUES($1, $2, $3)", a.UserID, a.DiseaseID, a.Note)
+	if res != nil {
+		res.Close()
+	}
 	return err
 }
 

@@ -3,6 +3,7 @@ package blood
 import (
 	"context"
 	"github.com/jackc/pgx/v4"
+	"github.com/segmentio/ksuid"
 	"time"
 )
 
@@ -26,7 +27,9 @@ func NewPostgres(url string) (Repository, error) {
 }
 
 func (r *postgresRepository) Close() {
-	_ = r.db.Close(context.Background())
+	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
+	defer cancel()
+	_ = r.db.Close(ctx)
 }
 
 // AddBlood repository implementation
@@ -36,7 +39,10 @@ func (r *postgresRepository) AddBlood(ctx context.Context, name string, rhesus b
 		Rhesus:      rhesus,
 		Description: description,
 	}
-	_, err := r.db.Query(ctx, "INSERT INTO bloods(name, rhesus, description) VALUES($1, $2, $3)", a.Name, a.Rhesus, a.Description)
+	res, err := r.db.Query(ctx, "INSERT INTO bloods(id, name, rhesus, description) VALUES($1, $2, $3)", ksuid.New().String(), a.Name, a.Rhesus, a.Description)
+	if res != nil {
+		res.Close()
+	}
 	return err
 }
 

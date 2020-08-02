@@ -2,7 +2,9 @@ package role
 
 import (
 	"context"
+	"fmt"
 	"github.com/jackc/pgx/v4"
+	"github.com/segmentio/ksuid"
 	"time"
 )
 
@@ -26,7 +28,9 @@ func NewPostgres(url string) (Repository, error) {
 }
 
 func (r *postgresRepository) Close() {
-	_ = r.db.Close(context.Background())
+	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
+	defer cancel()
+	_ = r.db.Close(ctx)
 }
 
 // AddRole repository implementation
@@ -35,7 +39,11 @@ func (r *postgresRepository) AddRole(ctx context.Context, name string, descripti
 		Name:        name,
 		Description: description,
 	}
-	_, err := r.db.Query(ctx, "INSERT INTO roles(name, description) VALUES($1, $2)", a.Name, a.Description)
+	res, err := r.db.Query(ctx, "INSERT INTO roles(id, name, description) VALUES ($1, $2)", ksuid.New().String(), a.Name, a.Description)
+	if res != nil {
+		res.Close()
+	}
+	fmt.Println(err)
 	return err
 }
 

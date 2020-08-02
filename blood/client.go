@@ -24,10 +24,10 @@ func (c *Client) Close() {
 	_ = c.conn.Close()
 }
 
-func (c *Client) AddBlood(ctx context.Context, name string, description string) (*Blood, error) {
+func (c *Client) AddBlood(ctx context.Context, name string, rhesus bool, description string) (*Blood, error) {
 	r, err := c.service.AddBlood(
 		ctx,
-		&proto.AddBloodRequest{Name: name, Description: description},
+		&proto.AddBloodRequest{Name: name, Rhesus: rhesus, Description: description},
 	)
 	if err != nil {
 		return nil, err

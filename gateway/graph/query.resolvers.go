@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"github.com/arganaphangquestian/go-medical/gateway/graph/model"
 	"log"
+	"time"
 )
 
 type queryResolver struct {
@@ -12,6 +13,8 @@ type queryResolver struct {
 }
 
 func (r *queryResolver) Blood(ctx context.Context, id *string) ([]*model.Blood, error) {
+	ctx, cancel := context.WithTimeout(ctx, 3*time.Second)
+	defer cancel()
 	if id != nil {
 		r, err := r.server.bloodClient.GetBloodByID(ctx, *id)
 		if err != nil {
@@ -47,6 +50,8 @@ func (r *queryResolver) Blood(ctx context.Context, id *string) ([]*model.Blood, 
 }
 
 func (r *queryResolver) Gender(ctx context.Context, id *string) ([]*model.Gender, error) {
+	ctx, cancel := context.WithTimeout(ctx, 3*time.Second)
+	defer cancel()
 	if id != nil {
 		r, err := r.server.genderClient.GetGenderByID(ctx, *id)
 		if err != nil {
@@ -80,6 +85,8 @@ func (r *queryResolver) Gender(ctx context.Context, id *string) ([]*model.Gender
 }
 
 func (r *queryResolver) History(ctx context.Context, id *string) ([]*model.History, error) {
+	ctx, cancel := context.WithTimeout(ctx, 3*time.Second)
+	defer cancel()
 	if id != nil {
 		r, err := r.server.historyClient.GetHistoryByID(ctx, *id)
 		if err != nil {
@@ -115,6 +122,8 @@ func (r *queryResolver) History(ctx context.Context, id *string) ([]*model.Histo
 }
 
 func (r *queryResolver) Role(ctx context.Context, id *string) ([]*model.Role, error) {
+	ctx, cancel := context.WithTimeout(ctx, 3*time.Second)
+	defer cancel()
 	if id != nil {
 		r, err := r.server.roleClient.GetRoleByID(ctx, *id)
 		if err != nil {
@@ -148,6 +157,8 @@ func (r *queryResolver) Role(ctx context.Context, id *string) ([]*model.Role, er
 }
 
 func (r *queryResolver) User(ctx context.Context, id *string) ([]*model.User, error) {
+	ctx, cancel := context.WithTimeout(ctx, 3*time.Second)
+	defer cancel()
 	if id != nil {
 		r, err := r.server.userClient.GetUserByID(ctx, *id)
 		if err != nil {
@@ -191,6 +202,8 @@ func (r *queryResolver) User(ctx context.Context, id *string) ([]*model.User, er
 }
 
 func (r *queryResolver) Disease(ctx context.Context, query *string, id *string) ([]*model.Disease, error) {
+	ctx, cancel := context.WithTimeout(ctx, 3*time.Second)
+	defer cancel()
 	if id != nil {
 		r, err := r.server.diseaseClient.GetDiseaseByID(ctx, *id)
 		if err != nil {

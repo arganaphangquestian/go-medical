@@ -11,7 +11,7 @@ func NewService(r Repository) Service {
 	return &historyService{r}
 }
 
-func (h historyService) AddHistory(ctx context.Context, userID string, diseaseID string, note string) (*History, error) {
+func (h historyService) AddHistory(ctx context.Context, userID string, diseaseID string, note string) error {
 	return h.repository.AddHistory(ctx, userID, diseaseID, note)
 }
 

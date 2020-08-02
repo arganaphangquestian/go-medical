@@ -2,7 +2,7 @@ package gender
 
 import "context"
 
-// Service for gender Module
+// Service for user Module
 type Service interface {
 	AddGender(ctx context.Context, name string, description string) error
 	GetGenders(ctx context.Context) ([]Gender, error)

@@ -20,10 +20,14 @@ const databaseName = "user"
 
 // NewMongo methods
 func NewMongo(url string) (Repository, error) {
+	credential := options.Credential{
+		Username: "argadev",
+		Password: "123456",
+	}
 	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
 	defer cancel()
 
-	client, err := mongo.Connect(ctx, options.Client().ApplyURI(url))
+	client, err := mongo.Connect(ctx, options.Client().ApplyURI(url).SetAuth(credential))
 	if err != nil {
 		return nil, err
 	}

@@ -1,75 +1,140 @@
 version: "3.7"
 
 services:
-  account:
+  blood:
     build:
       context: .
-      dockerfile: ./account/app.dockerfile
+      dockerfile: blood/app.dockerfile
     depends_on:
-      - account_db
+      - blood_db
     environment:
-      DATABASE_URL: postgres://spidey:123456@account_db/spidey?sslmode=disable
+      DATABASE_URL: postgres://argadev:123456@blood_db/argadev?sslmode=disable
     restart: on-failure
 
-  catalog:
+  role:
     build:
       context: .
-      dockerfile: ./catalog/app.dockerfile
+      dockerfile: ./role/app.dockerfile
     depends_on:
-      - catalog_db
+      - role_db
     environment:
-      DATABASE_URL: http://catalog_db:9200
+      DATABASE_URL: postgres://argadev:123456@role_db/argadev?sslmode=disable
     restart: on-failure
 
-  order:
+  gender:
     build:
       context: .
-      dockerfile: ./order/app.dockerfile
+      dockerfile: ./gender/app.dockerfile
     depends_on:
-      - order_db
+      - gender_db
     environment:
-      DATABASE_URL: postgres://spidey:123456@order_db/spidey?sslmode=disable
-      ACCOUNT_SERVICE_URL: account:8080
-      CATALOG_SERVICE_URL: catalog:8080
+      DATABASE_URL: postgres://argadev:123456@gender_db/argadev?sslmode=disable
     restart: on-failure
 
-  graphql:
+  disease:
     build:
       context: .
-      dockerfile: ./graphql/app.dockerfile
+      dockerfile: ./disease/app.dockerfile
+    depends_on:
+      - disease_db
+    environment:
+      DATABASE_URL: http://disease_db:9200
+    restart: on-failure
+
+  user:
+    build:
+      context: .
+      dockerfile: ./user/app.dockerfile
+    depends_on:
+      - user_db
+    environment:
+      DATABASE_URL: mongodb://user_db/medical?ssl=false
+    restart: on-failure
+
+  history:
+    build:
+      context: .
+      dockerfile: ./history/app.dockerfile
+    depends_on:
+      - history_db
+    environment:
+      DATABASE_URL: postgres://argadev:123456@history_db/argadev?sslmode=disable
+    restart: on-failure
+
+  gateway:
+    build:
+      context: .
+      dockerfile: ./gateway/app.dockerfile
     ports:
       - 8000:8080
     depends_on:
-      - account
-      - catalog
+      - blood
+      - disease
+      - role
+      - gender
+      - user
+      - history
     environment:
-      ACCOUNT_SERVICE_URL: account:8080
-      CATALOG_SERVICE_URL: catalog:8080
-      ORDER_SERVICE_URL: order:8080
+      BLOOD_SERVICE_URL: blood:8080
+      ROLE_SERVICE_URL: role:8080
+      GENDER_SERVICE_URL: user:8080
+      DISEASE_SERVICE_URL: disease:8080
+      USER_SERVICE_URL: user:8080
+      HISTORY_SERVICE_URL: history:8080
     restart: on-failure
 
-  account_db:
+  blood_db:
     build:
-      context: ./account
+      context: ./blood
       dockerfile: ./db.dockerfile
     environment:
-      POSTGRES_DB: spidey
-      POSTGRES_USER: spidey
+      POSTGRES_DB: argadev
+      POSTGRES_USER: argadev
       POSTGRES_PASSWORD: 123456
     restart: unless-stopped
 
-  catalog_db:
+  role_db:
+    build:
+      context: ./role
+      dockerfile: ./db.dockerfile
+    environment:
+      POSTGRES_DB: argadev
+      POSTGRES_USER: argadev
+      POSTGRES_PASSWORD: 123456
+    restart: unless-stopped
+
+  gender_db:
+    build:
+      context: ./gender
+      dockerfile: ./db.dockerfile
+    environment:
+      POSTGRES_DB: argadev
+      POSTGRES_USER: argadev
+      POSTGRES_PASSWORD: 123456
+    restart: unless-stopped
+
+  disease_db:
     image: docker.elastic.co/elasticsearch/elasticsearch:6.2.4
     environment:
       ES_JAVA_OPTS: -Xms1g -Xmx1g
       discovery.type: single-node
 
-  order_db:
+  user_db:
     build:
-      context: ./order
+      context: ./user
       dockerfile: ./db.dockerfile
     environment:
-      POSTGRES_DB: spidey
-      POSTGRES_USER: spidey
+      MONGO_INITDB_DATABASE: user
+      MONGO_INITDB_ROOT_USERNAME: argadev
+      MONGO_INITDB_ROOT_PASSWORD: 123456
+    restart: unless-stopped
+
+  history_db:
+    build:
+      context: ./history
+      dockerfile: ./db.dockerfile
+    environment:
+      POSTGRES_DB: argadev
+      POSTGRES_USER: argadev
       POSTGRES_PASSWORD: 123456
     restart: unless-stopped
