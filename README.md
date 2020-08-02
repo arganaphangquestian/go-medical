@@ -11,8 +11,9 @@
  - [x] Add main.go on Each Service
  - [x] Fix Postgres Lib
  - [x] GraphQL Schema
- - [ ] GraphQL Resolver
- - [ ] Fix GetByID Client
+ - [x] GraphQL Query Resolver
+ - [ ] GraphQL Mutation Resolver
+ - [x] Fix GetByID Client
  - [ ] docker-compose.yaml
  - [ ] Auth Service
  - [ ] Deploy

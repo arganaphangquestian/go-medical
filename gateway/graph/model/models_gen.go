@@ -2,38 +2,34 @@
 
 package model
 
-import (
-	"time"
-)
-
 type Blood struct {
-	ID          string     `json:"id"`
-	Name        string     `json:"name"`
-	Rhesus      bool       `json:"rhesus"`
-	Description *string    `json:"description"`
-	CreatedAt   *time.Time `json:"createdAt"`
+	ID          string  `json:"id"`
+	Name        string  `json:"name"`
+	Rhesus      bool    `json:"rhesus"`
+	Description *string `json:"description"`
+	CreatedAt   *string `json:"createdAt"`
 }
 
 type Disease struct {
-	ID          string     `json:"id"`
-	Name        string     `json:"name"`
-	Description *string    `json:"description"`
-	CreatedAt   *time.Time `json:"createdAt"`
+	ID          string  `json:"id"`
+	Name        string  `json:"name"`
+	Description *string `json:"description"`
+	CreatedAt   *string `json:"createdAt"`
 }
 
 type Gender struct {
-	ID          string     `json:"id"`
-	Name        string     `json:"name"`
-	Description *string    `json:"description"`
-	CreatedAt   *time.Time `json:"createdAt"`
+	ID          string  `json:"id"`
+	Name        string  `json:"name"`
+	Description *string `json:"description"`
+	CreatedAt   *string `json:"createdAt"`
 }
 
 type History struct {
-	ID        string     `json:"id"`
-	UserID    string     `json:"userID"`
-	DiseaseID string     `json:"diseaseID"`
-	Note      *string    `json:"note"`
-	CreatedAt *time.Time `json:"createdAt"`
+	ID        string  `json:"id"`
+	UserID    string  `json:"userID"`
+	DiseaseID string  `json:"diseaseID"`
+	Note      *string `json:"note"`
+	CreatedAt *string `json:"createdAt"`
 }
 
 type InputBlood struct {
@@ -75,10 +71,10 @@ type InputUser struct {
 }
 
 type Role struct {
-	ID          string     `json:"id"`
-	Name        string     `json:"name"`
-	Description *string    `json:"description"`
-	CreatedAt   *time.Time `json:"createdAt"`
+	ID          string  `json:"id"`
+	Name        string  `json:"name"`
+	Description *string `json:"description"`
+	CreatedAt   *string `json:"createdAt"`
 }
 
 type User struct {

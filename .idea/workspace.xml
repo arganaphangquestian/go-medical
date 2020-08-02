@@ -2,40 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="40a0830d-05b9-46b4-9d40-7c5eebd456b4" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/gateway/graph/graph.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gateway/graph/mutation.resolvers.gp.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gateway/graph/query.resolvers.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blood/cmd/blood/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/blood/cmd/blood/main.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blood/proto/blood.pb.go" beforeDir="false" afterPath="$PROJECT_DIR$/blood/proto/blood.pb.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blood/proto/blood.proto" beforeDir="false" afterPath="$PROJECT_DIR$/blood/proto/blood.proto" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blood/repository.go" beforeDir="false" afterPath="$PROJECT_DIR$/blood/repository.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blood/repository_impl.go" beforeDir="false" afterPath="$PROJECT_DIR$/blood/repository_impl.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blood/server.go" beforeDir="false" afterPath="$PROJECT_DIR$/blood/server.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blood/service.go" beforeDir="false" afterPath="$PROJECT_DIR$/blood/service.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blood/service_impl.go" beforeDir="false" afterPath="$PROJECT_DIR$/blood/service_impl.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blood/up.sql" beforeDir="false" afterPath="$PROJECT_DIR$/blood/up.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/disease/cmd/disease/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/disease/cmd/disease/main.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gateway/gqlgen.yml" beforeDir="false" afterPath="$PROJECT_DIR$/gateway/gqlgen.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/disease/client.go" beforeDir="false" afterPath="$PROJECT_DIR$/disease/client.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gateway/graph/generated/generated.go" beforeDir="false" afterPath="$PROJECT_DIR$/gateway/graph/generated/generated.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gateway/graph/model/models_gen.go" beforeDir="false" afterPath="$PROJECT_DIR$/gateway/graph/model/models_gen.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gateway/graph/resolver.go" beforeDir="false" afterPath="$PROJECT_DIR$/gateway/graph/resolver.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gateway/graph/query.resolvers.go" beforeDir="false" afterPath="$PROJECT_DIR$/gateway/graph/query.resolvers.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gateway/graph/schema.graphql" beforeDir="false" afterPath="$PROJECT_DIR$/gateway/graph/schema.graphql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gateway/graph/schema.resolvers.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gateway/server.go" beforeDir="false" afterPath="$PROJECT_DIR$/gateway/graph/main.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gender/cmd/gender/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/gender/cmd/gender/main.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gender/repository_impl.go" beforeDir="false" afterPath="$PROJECT_DIR$/gender/repository_impl.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gender/up.sql" beforeDir="false" afterPath="$PROJECT_DIR$/gender/up.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/go.sum" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/history/cmd/history/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/history/cmd/history/main.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/history/repository_impl.go" beforeDir="false" afterPath="$PROJECT_DIR$/history/repository_impl.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/history/up.sql" beforeDir="false" afterPath="$PROJECT_DIR$/history/up.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/role/cmd/gender/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/role/cmd/gender/main.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/role/repository_impl.go" beforeDir="false" afterPath="$PROJECT_DIR$/role/repository_impl.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/role/up.sql" beforeDir="false" afterPath="$PROJECT_DIR$/role/up.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/cmd/gender/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/user/cmd/gender/main.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -78,7 +51,7 @@
     <property name="go.sdk.automatically.set" value="true" />
     <property name="go.tried.to.enable.integration.vgo.integrator" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../spidey" />
-    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.CommitDialog" />
+    <property name="settings.editor.selected.configurable" value="Errors" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -123,7 +96,8 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="Initial Commit :fire:" />
     <MESSAGE value="GRPC, Database Done" />
-    <option name="LAST_COMMIT_MESSAGE" value="GRPC, Database Done" />
+    <MESSAGE value="GraphQL Server Done" />
+    <option name="LAST_COMMIT_MESSAGE" value="GraphQL Server Done" />
   </component>
   <component name="VgoProject">
     <integration-enabled>true</integration-enabled>
@@ -137,10 +111,10 @@
       <screen x="0" y="0" width="1366" height="768" />
     </state>
     <state x="141" y="34" width="1084" height="734" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1366.768@0.0.1366.768" timestamp="1596263602117" />
-    <state x="238" y="0" width="879" height="738" key="CommitChangelistDialog2" timestamp="1596275123505">
+    <state x="238" y="0" width="879" height="738" key="CommitChangelistDialog2" timestamp="1596363447158">
       <screen x="0" y="0" width="1366" height="768" />
     </state>
-    <state x="238" y="0" width="879" height="738" key="CommitChangelistDialog2/0.0.1366.768@0.0.1366.768" timestamp="1596275123505" />
+    <state x="238" y="0" width="879" height="738" key="CommitChangelistDialog2/0.0.1366.768@0.0.1366.768" timestamp="1596363447158" />
     <state x="524" y="289" width="307" height="194" key="DockerComposeFileDialog" timestamp="1596263598129">
       <screen x="0" y="0" width="1366" height="768" />
     </state>
@@ -149,17 +123,17 @@
       <screen x="0" y="0" width="1366" height="768" />
     </state>
     <state x="461" y="144" width="424" height="454" key="FileChooserDialogImpl/0.0.1366.768@0.0.1366.768" timestamp="1596363131787" />
-    <state x="172" y="19" key="SettingsEditor" timestamp="1596275095545">
+    <state x="172" y="19" key="SettingsEditor" timestamp="1596365093753">
       <screen x="0" y="0" width="1366" height="768" />
     </state>
-    <state x="172" y="19" key="SettingsEditor/0.0.1366.768@0.0.1366.768" timestamp="1596275095545" />
-    <state x="278" y="105" width="800" height="527" key="Vcs.Push.Dialog.v2" timestamp="1596275126966">
+    <state x="172" y="19" key="SettingsEditor/0.0.1366.768@0.0.1366.768" timestamp="1596365093753" />
+    <state x="278" y="105" width="800" height="527" key="Vcs.Push.Dialog.v2" timestamp="1596363450974">
       <screen x="0" y="0" width="1366" height="768" />
     </state>
-    <state x="278" y="105" width="800" height="527" key="Vcs.Push.Dialog.v2/0.0.1366.768@0.0.1366.768" timestamp="1596275126966" />
-    <state x="346" y="89" width="672" height="678" key="search.everywhere.popup" timestamp="1596363363961">
+    <state x="278" y="105" width="800" height="527" key="Vcs.Push.Dialog.v2/0.0.1366.768@0.0.1366.768" timestamp="1596363450974" />
+    <state x="346" y="89" width="672" height="678" key="search.everywhere.popup" timestamp="1596365068818">
       <screen x="0" y="0" width="1366" height="768" />
     </state>
-    <state x="346" y="89" width="672" height="678" key="search.everywhere.popup/0.0.1366.768@0.0.1366.768" timestamp="1596363363961" />
+    <state x="346" y="89" width="672" height="678" key="search.everywhere.popup/0.0.1366.768@0.0.1366.768" timestamp="1596365068818" />
   </component>
 </project>

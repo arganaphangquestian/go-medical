@@ -1,22 +1,20 @@
 # GraphQL schema example
 #
 # https://gqlgen.com/getting-started/
-scalar Time
-
 # Model
 type Blood {
   id: String!
   name: String!
   rhesus: Boolean!
   description: String
-  createdAt: Time
+  createdAt: String
 }
 
 type Gender {
   id: String!
   name: String!
   description: String
-  createdAt: Time
+  createdAt: String
 }
 
 type History {
@@ -24,14 +22,14 @@ type History {
   userID: String!
   diseaseID: String!
   note: String
-  createdAt: Time
+  createdAt: String
 }
 
 type Role {
   id: String!
   name: String!
   description: String
-  createdAt: Time
+  createdAt: String
 }
 
 type User {
@@ -50,7 +48,7 @@ type Disease {
   id: String!
   name: String!
   description: String
-  createdAt: Time
+  createdAt: String
 }
 
 # Input

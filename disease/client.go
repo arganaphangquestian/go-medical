@@ -40,10 +40,10 @@ func (c *Client) AddDisease(ctx context.Context, name string, description string
 	}, nil
 }
 
-func (c *Client) GetDiseases(ctx context.Context) ([]Disease, error) {
+func (c *Client) GetDiseases(ctx context.Context, query string) ([]Disease, error) {
 	r, err := c.service.GetDiseases(
 		ctx,
-		&proto.GetDiseaseRequest{},
+		&proto.GetDiseaseRequest{Query: query},
 	)
 	if err != nil {
 		return nil, err
