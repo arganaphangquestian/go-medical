@@ -38,7 +38,7 @@ func (r *postgresRepository) AddGender(ctx context.Context, name string, descrip
 		Name:        name,
 		Description: description,
 	}
-	res, err := r.db.Query(ctx, "INSERT INTO genders(id, name, description) VALUES($1, $2)", ksuid.New().String(), a.Name, a.Description)
+	res, err := r.db.Query(ctx, "INSERT INTO genders(id, name, description) VALUES($1, $2, $3)", ksuid.New().String(), a.Name, a.Description)
 	if res != nil {
 		res.Close()
 	}

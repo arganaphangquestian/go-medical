@@ -22,7 +22,7 @@
  ### Bugs
   - [ ] Gender => unknown service proto.GenderService
   - [ ] Disease => elastic: Error 404 (Not Found): no such index [type=index_not_found_exception]
-  - [ ] pgx conn busy
+  - [x] pgx conn busy
  
 
 ### Database Schema

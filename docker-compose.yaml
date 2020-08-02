@@ -77,7 +77,7 @@ services:
     environment:
       BLOOD_SERVICE_URL: blood:8080
       ROLE_SERVICE_URL: role:8080
-      GENDER_SERVICE_URL: user:8080
+      GENDER_SERVICE_URL: gender:8080
       DISEASE_SERVICE_URL: disease:8080
       USER_SERVICE_URL: user:8080
       HISTORY_SERVICE_URL: history:8080

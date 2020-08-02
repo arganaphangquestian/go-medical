@@ -39,7 +39,7 @@ func (r *postgresRepository) AddRole(ctx context.Context, name string, descripti
 		Name:        name,
 		Description: description,
 	}
-	res, err := r.db.Query(ctx, "INSERT INTO roles(id, name, description) VALUES ($1, $2)", ksuid.New().String(), a.Name, a.Description)
+	res, err := r.db.Query(ctx, "INSERT INTO roles(id, name, description) VALUES ($1, $2, $3)", ksuid.New().String(), a.Name, a.Description)
 	if res != nil {
 		res.Close()
 	}

@@ -100,10 +100,10 @@ type Mutation {
 }
 
 type Query {
-  Blood(id: String): [Blood!]!
-  Gender(id: String): [Gender!]!
-  History(id: String): [History!]!
-  Role(id: String): [Role!]!
-  User(id: String): [User!]!
-  Disease(query: String, id: String): [Disease!]!
+  blood(id: String): [Blood!]!
+  gender(id: String): [Gender!]!
+  history(id: String): [History!]!
+  role(id: String): [Role!]!
+  user(id: String): [User!]!
+  disease(query: String, id: String): [Disease!]!
 }

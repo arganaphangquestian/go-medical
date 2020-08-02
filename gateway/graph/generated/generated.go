@@ -303,7 +303,7 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 			return 0, false
 		}
 
-		return e.complexity.Mutation.CreateGender(childComplexity, args["user"].(*model.InputGender)), true
+		return e.complexity.Mutation.CreateGender(childComplexity, args["gender"].(*model.InputGender)), true
 
 	case "Mutation.createHistory":
 		if e.complexity.Mutation.CreateHistory == nil {
@@ -341,72 +341,72 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 
 		return e.complexity.Mutation.CreateUser(childComplexity, args["user"].(*model.InputUser)), true
 
-	case "Query.Blood":
+	case "Query.blood":
 		if e.complexity.Query.Blood == nil {
 			break
 		}
 
-		args, err := ec.field_Query_Blood_args(context.TODO(), rawArgs)
+		args, err := ec.field_Query_blood_args(context.TODO(), rawArgs)
 		if err != nil {
 			return 0, false
 		}
 
 		return e.complexity.Query.Blood(childComplexity, args["id"].(*string)), true
 
-	case "Query.Disease":
+	case "Query.disease":
 		if e.complexity.Query.Disease == nil {
 			break
 		}
 
-		args, err := ec.field_Query_Disease_args(context.TODO(), rawArgs)
+		args, err := ec.field_Query_disease_args(context.TODO(), rawArgs)
 		if err != nil {
 			return 0, false
 		}
 
 		return e.complexity.Query.Disease(childComplexity, args["query"].(*string), args["id"].(*string)), true
 
-	case "Query.Gender":
+	case "Query.gender":
 		if e.complexity.Query.Gender == nil {
 			break
 		}
 
-		args, err := ec.field_Query_Gender_args(context.TODO(), rawArgs)
+		args, err := ec.field_Query_gender_args(context.TODO(), rawArgs)
 		if err != nil {
 			return 0, false
 		}
 
 		return e.complexity.Query.Gender(childComplexity, args["id"].(*string)), true
 
-	case "Query.History":
+	case "Query.history":
 		if e.complexity.Query.History == nil {
 			break
 		}
 
-		args, err := ec.field_Query_History_args(context.TODO(), rawArgs)
+		args, err := ec.field_Query_history_args(context.TODO(), rawArgs)
 		if err != nil {
 			return 0, false
 		}
 
 		return e.complexity.Query.History(childComplexity, args["id"].(*string)), true
 
-	case "Query.Role":
+	case "Query.role":
 		if e.complexity.Query.Role == nil {
 			break
 		}
 
-		args, err := ec.field_Query_Role_args(context.TODO(), rawArgs)
+		args, err := ec.field_Query_role_args(context.TODO(), rawArgs)
 		if err != nil {
 			return 0, false
 		}
 
 		return e.complexity.Query.Role(childComplexity, args["id"].(*string)), true
 
-	case "Query.User":
+	case "Query.user":
 		if e.complexity.Query.User == nil {
 			break
 		}
 
-		args, err := ec.field_Query_User_args(context.TODO(), rawArgs)
+		args, err := ec.field_Query_user_args(context.TODO(), rawArgs)
 		if err != nil {
 			return 0, false
 		}
@@ -662,7 +662,7 @@ input InputDisease {
 
 type Mutation {
   createBlood(blood: InputBlood): Blood
-  createGender(user: InputGender): Gender
+  createGender(gender: InputGender): Gender
   createHistory(history: InputHistory): History
   createRole(role: InputRole): Role
   createUser(user: InputUser): User
@@ -670,12 +670,12 @@ type Mutation {
 }
 
 type Query {
-  Blood(id: String): [Blood!]!
-  Gender(id: String): [Gender!]!
-  History(id: String): [History!]!
-  Role(id: String): [Role!]!
-  User(id: String): [User!]!
-  Disease(query: String, id: String): [Disease!]!
+  blood(id: String): [Blood!]!
+  gender(id: String): [Gender!]!
+  history(id: String): [History!]!
+  role(id: String): [Role!]!
+  user(id: String): [User!]!
+  disease(query: String, id: String): [Disease!]!
 }`, BuiltIn: false},
 }
 var parsedSchema = gqlparser.MustLoadSchema(sources...)
@@ -716,13 +716,13 @@ func (ec *executionContext) field_Mutation_createGender_args(ctx context.Context
 	var err error
 	args := map[string]interface{}{}
 	var arg0 *model.InputGender
-	if tmp, ok := rawArgs["user"]; ok {
+	if tmp, ok := rawArgs["gender"]; ok {
 		arg0, err = ec.unmarshalOInputGender2ᚖgithubᚗcomᚋarganaphangquestianᚋgoᚑmedicalᚋgatewayᚋgraphᚋmodelᚐInputGender(ctx, tmp)
 		if err != nil {
 			return nil, err
 		}
 	}
-	args["user"] = arg0
+	args["gender"] = arg0
 	return args, nil
 }
 
@@ -768,7 +768,21 @@ func (ec *executionContext) field_Mutation_createUser_args(ctx context.Context, 
 	return args, nil
 }
 
-func (ec *executionContext) field_Query_Blood_args(ctx context.Context, rawArgs map[string]interface{}) (map[string]interface{}, error) {
+func (ec *executionContext) field_Query___type_args(ctx context.Context, rawArgs map[string]interface{}) (map[string]interface{}, error) {
+	var err error
+	args := map[string]interface{}{}
+	var arg0 string
+	if tmp, ok := rawArgs["name"]; ok {
+		arg0, err = ec.unmarshalNString2string(ctx, tmp)
+		if err != nil {
+			return nil, err
+		}
+	}
+	args["name"] = arg0
+	return args, nil
+}
+
+func (ec *executionContext) field_Query_blood_args(ctx context.Context, rawArgs map[string]interface{}) (map[string]interface{}, error) {
 	var err error
 	args := map[string]interface{}{}
 	var arg0 *string
@@ -782,7 +796,7 @@ func (ec *executionContext) field_Query_Blood_args(ctx context.Context, rawArgs 
 	return args, nil
 }
 
-func (ec *executionContext) field_Query_Disease_args(ctx context.Context, rawArgs map[string]interface{}) (map[string]interface{}, error) {
+func (ec *executionContext) field_Query_disease_args(ctx context.Context, rawArgs map[string]interface{}) (map[string]interface{}, error) {
 	var err error
 	args := map[string]interface{}{}
 	var arg0 *string
@@ -804,7 +818,7 @@ func (ec *executionContext) field_Query_Disease_args(ctx context.Context, rawArg
 	return args, nil
 }
 
-func (ec *executionContext) field_Query_Gender_args(ctx context.Context, rawArgs map[string]interface{}) (map[string]interface{}, error) {
+func (ec *executionContext) field_Query_gender_args(ctx context.Context, rawArgs map[string]interface{}) (map[string]interface{}, error) {
 	var err error
 	args := map[string]interface{}{}
 	var arg0 *string
@@ -818,7 +832,7 @@ func (ec *executionContext) field_Query_Gender_args(ctx context.Context, rawArgs
 	return args, nil
 }
 
-func (ec *executionContext) field_Query_History_args(ctx context.Context, rawArgs map[string]interface{}) (map[string]interface{}, error) {
+func (ec *executionContext) field_Query_history_args(ctx context.Context, rawArgs map[string]interface{}) (map[string]interface{}, error) {
 	var err error
 	args := map[string]interface{}{}
 	var arg0 *string
@@ -832,7 +846,7 @@ func (ec *executionContext) field_Query_History_args(ctx context.Context, rawArg
 	return args, nil
 }
 
-func (ec *executionContext) field_Query_Role_args(ctx context.Context, rawArgs map[string]interface{}) (map[string]interface{}, error) {
+func (ec *executionContext) field_Query_role_args(ctx context.Context, rawArgs map[string]interface{}) (map[string]interface{}, error) {
 	var err error
 	args := map[string]interface{}{}
 	var arg0 *string
@@ -846,7 +860,7 @@ func (ec *executionContext) field_Query_Role_args(ctx context.Context, rawArgs m
 	return args, nil
 }
 
-func (ec *executionContext) field_Query_User_args(ctx context.Context, rawArgs map[string]interface{}) (map[string]interface{}, error) {
+func (ec *executionContext) field_Query_user_args(ctx context.Context, rawArgs map[string]interface{}) (map[string]interface{}, error) {
 	var err error
 	args := map[string]interface{}{}
 	var arg0 *string
@@ -857,20 +871,6 @@ func (ec *executionContext) field_Query_User_args(ctx context.Context, rawArgs m
 		}
 	}
 	args["id"] = arg0
-	return args, nil
-}
-
-func (ec *executionContext) field_Query___type_args(ctx context.Context, rawArgs map[string]interface{}) (map[string]interface{}, error) {
-	var err error
-	args := map[string]interface{}{}
-	var arg0 string
-	if tmp, ok := rawArgs["name"]; ok {
-		arg0, err = ec.unmarshalNString2string(ctx, tmp)
-		if err != nil {
-			return nil, err
-		}
-	}
-	args["name"] = arg0
 	return args, nil
 }
 
@@ -1560,7 +1560,7 @@ func (ec *executionContext) _Mutation_createGender(ctx context.Context, field gr
 	fc.Args = args
 	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
 		ctx = rctx // use context from middleware stack in children
-		return ec.resolvers.Mutation().CreateGender(rctx, args["user"].(*model.InputGender))
+		return ec.resolvers.Mutation().CreateGender(rctx, args["gender"].(*model.InputGender))
 	})
 	if err != nil {
 		ec.Error(ctx, err)
@@ -1726,7 +1726,7 @@ func (ec *executionContext) _Mutation_createDisease(ctx context.Context, field g
 	return ec.marshalODisease2ᚖgithubᚗcomᚋarganaphangquestianᚋgoᚑmedicalᚋgatewayᚋgraphᚋmodelᚐDisease(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) _Query_Blood(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
+func (ec *executionContext) _Query_blood(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
 	defer func() {
 		if r := recover(); r != nil {
 			ec.Error(ctx, ec.Recover(ctx, r))
@@ -1742,7 +1742,7 @@ func (ec *executionContext) _Query_Blood(ctx context.Context, field graphql.Coll
 
 	ctx = graphql.WithFieldContext(ctx, fc)
 	rawArgs := field.ArgumentMap(ec.Variables)
-	args, err := ec.field_Query_Blood_args(ctx, rawArgs)
+	args, err := ec.field_Query_blood_args(ctx, rawArgs)
 	if err != nil {
 		ec.Error(ctx, err)
 		return graphql.Null
@@ -1767,7 +1767,7 @@ func (ec *executionContext) _Query_Blood(ctx context.Context, field graphql.Coll
 	return ec.marshalNBlood2ᚕᚖgithubᚗcomᚋarganaphangquestianᚋgoᚑmedicalᚋgatewayᚋgraphᚋmodelᚐBloodᚄ(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) _Query_Gender(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
+func (ec *executionContext) _Query_gender(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
 	defer func() {
 		if r := recover(); r != nil {
 			ec.Error(ctx, ec.Recover(ctx, r))
@@ -1783,7 +1783,7 @@ func (ec *executionContext) _Query_Gender(ctx context.Context, field graphql.Col
 
 	ctx = graphql.WithFieldContext(ctx, fc)
 	rawArgs := field.ArgumentMap(ec.Variables)
-	args, err := ec.field_Query_Gender_args(ctx, rawArgs)
+	args, err := ec.field_Query_gender_args(ctx, rawArgs)
 	if err != nil {
 		ec.Error(ctx, err)
 		return graphql.Null
@@ -1808,7 +1808,7 @@ func (ec *executionContext) _Query_Gender(ctx context.Context, field graphql.Col
 	return ec.marshalNGender2ᚕᚖgithubᚗcomᚋarganaphangquestianᚋgoᚑmedicalᚋgatewayᚋgraphᚋmodelᚐGenderᚄ(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) _Query_History(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
+func (ec *executionContext) _Query_history(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
 	defer func() {
 		if r := recover(); r != nil {
 			ec.Error(ctx, ec.Recover(ctx, r))
@@ -1824,7 +1824,7 @@ func (ec *executionContext) _Query_History(ctx context.Context, field graphql.Co
 
 	ctx = graphql.WithFieldContext(ctx, fc)
 	rawArgs := field.ArgumentMap(ec.Variables)
-	args, err := ec.field_Query_History_args(ctx, rawArgs)
+	args, err := ec.field_Query_history_args(ctx, rawArgs)
 	if err != nil {
 		ec.Error(ctx, err)
 		return graphql.Null
@@ -1849,7 +1849,7 @@ func (ec *executionContext) _Query_History(ctx context.Context, field graphql.Co
 	return ec.marshalNHistory2ᚕᚖgithubᚗcomᚋarganaphangquestianᚋgoᚑmedicalᚋgatewayᚋgraphᚋmodelᚐHistoryᚄ(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) _Query_Role(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
+func (ec *executionContext) _Query_role(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
 	defer func() {
 		if r := recover(); r != nil {
 			ec.Error(ctx, ec.Recover(ctx, r))
@@ -1865,7 +1865,7 @@ func (ec *executionContext) _Query_Role(ctx context.Context, field graphql.Colle
 
 	ctx = graphql.WithFieldContext(ctx, fc)
 	rawArgs := field.ArgumentMap(ec.Variables)
-	args, err := ec.field_Query_Role_args(ctx, rawArgs)
+	args, err := ec.field_Query_role_args(ctx, rawArgs)
 	if err != nil {
 		ec.Error(ctx, err)
 		return graphql.Null
@@ -1890,7 +1890,7 @@ func (ec *executionContext) _Query_Role(ctx context.Context, field graphql.Colle
 	return ec.marshalNRole2ᚕᚖgithubᚗcomᚋarganaphangquestianᚋgoᚑmedicalᚋgatewayᚋgraphᚋmodelᚐRoleᚄ(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) _Query_User(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
+func (ec *executionContext) _Query_user(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
 	defer func() {
 		if r := recover(); r != nil {
 			ec.Error(ctx, ec.Recover(ctx, r))
@@ -1906,7 +1906,7 @@ func (ec *executionContext) _Query_User(ctx context.Context, field graphql.Colle
 
 	ctx = graphql.WithFieldContext(ctx, fc)
 	rawArgs := field.ArgumentMap(ec.Variables)
-	args, err := ec.field_Query_User_args(ctx, rawArgs)
+	args, err := ec.field_Query_user_args(ctx, rawArgs)
 	if err != nil {
 		ec.Error(ctx, err)
 		return graphql.Null
@@ -1931,7 +1931,7 @@ func (ec *executionContext) _Query_User(ctx context.Context, field graphql.Colle
 	return ec.marshalNUser2ᚕᚖgithubᚗcomᚋarganaphangquestianᚋgoᚑmedicalᚋgatewayᚋgraphᚋmodelᚐUserᚄ(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) _Query_Disease(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
+func (ec *executionContext) _Query_disease(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
 	defer func() {
 		if r := recover(); r != nil {
 			ec.Error(ctx, ec.Recover(ctx, r))
@@ -1947,7 +1947,7 @@ func (ec *executionContext) _Query_Disease(ctx context.Context, field graphql.Co
 
 	ctx = graphql.WithFieldContext(ctx, fc)
 	rawArgs := field.ArgumentMap(ec.Variables)
-	args, err := ec.field_Query_Disease_args(ctx, rawArgs)
+	args, err := ec.field_Query_disease_args(ctx, rawArgs)
 	if err != nil {
 		ec.Error(ctx, err)
 		return graphql.Null
@@ -3933,7 +3933,7 @@ func (ec *executionContext) _Query(ctx context.Context, sel ast.SelectionSet) gr
 		switch field.Name {
 		case "__typename":
 			out.Values[i] = graphql.MarshalString("Query")
-		case "Blood":
+		case "blood":
 			field := field
 			out.Concurrently(i, func() (res graphql.Marshaler) {
 				defer func() {
@@ -3941,13 +3941,13 @@ func (ec *executionContext) _Query(ctx context.Context, sel ast.SelectionSet) gr
 						ec.Error(ctx, ec.Recover(ctx, r))
 					}
 				}()
-				res = ec._Query_Blood(ctx, field)
+				res = ec._Query_blood(ctx, field)
 				if res == graphql.Null {
 					atomic.AddUint32(&invalids, 1)
 				}
 				return res
 			})
-		case "Gender":
+		case "gender":
 			field := field
 			out.Concurrently(i, func() (res graphql.Marshaler) {
 				defer func() {
@@ -3955,13 +3955,13 @@ func (ec *executionContext) _Query(ctx context.Context, sel ast.SelectionSet) gr
 						ec.Error(ctx, ec.Recover(ctx, r))
 					}
 				}()
-				res = ec._Query_Gender(ctx, field)
+				res = ec._Query_gender(ctx, field)
 				if res == graphql.Null {
 					atomic.AddUint32(&invalids, 1)
 				}
 				return res
 			})
-		case "History":
+		case "history":
 			field := field
 			out.Concurrently(i, func() (res graphql.Marshaler) {
 				defer func() {
@@ -3969,13 +3969,13 @@ func (ec *executionContext) _Query(ctx context.Context, sel ast.SelectionSet) gr
 						ec.Error(ctx, ec.Recover(ctx, r))
 					}
 				}()
-				res = ec._Query_History(ctx, field)
+				res = ec._Query_history(ctx, field)
 				if res == graphql.Null {
 					atomic.AddUint32(&invalids, 1)
 				}
 				return res
 			})
-		case "Role":
+		case "role":
 			field := field
 			out.Concurrently(i, func() (res graphql.Marshaler) {
 				defer func() {
@@ -3983,13 +3983,13 @@ func (ec *executionContext) _Query(ctx context.Context, sel ast.SelectionSet) gr
 						ec.Error(ctx, ec.Recover(ctx, r))
 					}
 				}()
-				res = ec._Query_Role(ctx, field)
+				res = ec._Query_role(ctx, field)
 				if res == graphql.Null {
 					atomic.AddUint32(&invalids, 1)
 				}
 				return res
 			})
-		case "User":
+		case "user":
 			field := field
 			out.Concurrently(i, func() (res graphql.Marshaler) {
 				defer func() {
@@ -3997,13 +3997,13 @@ func (ec *executionContext) _Query(ctx context.Context, sel ast.SelectionSet) gr
 						ec.Error(ctx, ec.Recover(ctx, r))
 					}
 				}()
-				res = ec._Query_User(ctx, field)
+				res = ec._Query_user(ctx, field)
 				if res == graphql.Null {
 					atomic.AddUint32(&invalids, 1)
 				}
 				return res
 			})
-		case "Disease":
+		case "disease":
 			field := field
 			out.Concurrently(i, func() (res graphql.Marshaler) {
 				defer func() {
@@ -4011,7 +4011,7 @@ func (ec *executionContext) _Query(ctx context.Context, sel ast.SelectionSet) gr
 						ec.Error(ctx, ec.Recover(ctx, r))
 					}
 				}()
-				res = ec._Query_Disease(ctx, field)
+				res = ec._Query_disease(ctx, field)
 				if res == graphql.Null {
 					atomic.AddUint32(&invalids, 1)
 				}

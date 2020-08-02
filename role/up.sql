@@ -14,3 +14,4 @@ VALUES ('role_Admin', 'Admin', 'Admin Role'),
        ('role_Staff', 'Staff', 'Staff Role'),
        ('role_User', 'User', 'User Role'),
        ('role_Guest', 'Guest', 'Guest Role');
+
