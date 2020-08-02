@@ -2,20 +2,23 @@ package history
 
 import (
 	"context"
-	"database/sql"
+	"github.com/jackc/pgx/v4"
+	"time"
 )
 
 type postgresRepository struct {
-	db *sql.DB
+	db *pgx.Conn
 }
 
 // NewPostgres methods
 func NewPostgres(url string) (Repository, error) {
-	db, err := sql.Open("postgres", url)
+	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
+	defer cancel()
+	db, err := pgx.Connect(context.Background(), url)
 	if err != nil {
 		return nil, err
 	}
-	err = db.Ping()
+	err = db.Ping(ctx)
 	if err != nil {
 		return nil, err
 	}
@@ -23,7 +26,7 @@ func NewPostgres(url string) (Repository, error) {
 }
 
 func (r *postgresRepository) Close() {
-	_ = r.db.Close()
+	_ = r.db.Close(context.Background())
 }
 
 func (r *postgresRepository) AddHistory(ctx context.Context, userID string, diseaseID string, note string) error {
@@ -32,12 +35,12 @@ func (r *postgresRepository) AddHistory(ctx context.Context, userID string, dise
 		DiseaseID: diseaseID,
 		Note:      note,
 	}
-	_, err := r.db.ExecContext(ctx, "INSERT INTO histories(user_id, disease_id, note) VALUES($1, $2, $3)", a.UserID, a.DiseaseID, a.Note)
+	_, err := r.db.Query(ctx, "INSERT INTO histories(user_id, disease_id, note) VALUES($1, $2, $3)", a.UserID, a.DiseaseID, a.Note)
 	return err
 }
 
 func (r *postgresRepository) GetHistories(ctx context.Context) ([]History, error) {
-	rows, err := r.db.QueryContext(
+	rows, err := r.db.Query(
 		ctx,
 		"SELECT id, user_id, disease_id, note FROM histories",
 	)
@@ -61,7 +64,7 @@ func (r *postgresRepository) GetHistories(ctx context.Context) ([]History, error
 
 func (r *postgresRepository) GetHistoryByID(ctx context.Context, id string) (*History, error) {
 	a := &History{}
-	row := r.db.QueryRow(`SELECT id, user_id, disease_id, note FROM histories WHERE id=$1;`, id)
+	row := r.db.QueryRow(ctx, `SELECT id, user_id, disease_id, note FROM histories WHERE id=$1;`, id)
 
 	err := row.Scan(&a.ID, &a.UserID, &a.DiseaseID, &a.Note)
 

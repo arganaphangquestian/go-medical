@@ -1,28 +1,111 @@
 # GraphQL schema example
 #
 # https://gqlgen.com/getting-started/
+scalar Time
 
-type Todo {
-  id: ID!
-  text: String!
-  done: Boolean!
-  user: User!
+# Model
+type Blood {
+  id: String!
+  name: String!
+  rhesus: Boolean!
+  description: String
+  createdAt: Time
+}
+
+type Gender {
+  id: String!
+  name: String!
+  description: String
+  createdAt: Time
+}
+
+type History {
+  id: String!
+  userID: String!
+  diseaseID: String!
+  note: String
+  createdAt: Time
+}
+
+type Role {
+  id: String!
+  name: String!
+  description: String
+  createdAt: Time
 }
 
 type User {
-  id: ID!
+  id: String!
   name: String!
+  email: String!
+  address: String!
+  roleID: String!
+  genderID: String!
+  bloodID: String!
+  birthOfDate: String
+  contact: String
 }
 
-type Query {
-  todos: [Todo!]!
+type Disease {
+  id: String!
+  name: String!
+  description: String
+  createdAt: Time
 }
 
-input NewTodo {
-  text: String!
-  userId: String!
+# Input
+input InputBlood {
+  name: String!
+  rhesus: Boolean!
+  description: String
+}
+
+input InputGender {
+  name: String!
+  description: String
+}
+
+input InputHistory {
+  userID: String!
+  diseaseID: String!
+  note: String
+}
+
+input InputRole {
+  name: String!
+  description: String
+}
+
+input InputUser {
+  name: String!
+  email: String!
+  address: String!
+  roleID: String!
+  genderID: String!
+  bloodID: String!
+  birthOfDate: String
+  contact: String
+}
+
+input InputDisease {
+  name: String!
+  description: String
 }
 
 type Mutation {
-  createTodo(input: NewTodo!): Todo!
+  createBlood(blood: InputBlood): Blood
+  createGender(gender: InputGender): Gender
+  createHistory(history: InputHistory): History
+  createRole(role: InputRole): Role
+  createUser(user: InputUser): User
+  createDisease(disease: InputDisease): Disease
+}
+
+type Query {
+  Blood(id: String): [Blood!]!
+  Gender(id: String): [Gender!]!
+  History(id: String): [History!]!
+  Role(id: String): [Role!]!
+  User(id: String): [User!]!
+  Disease(query: String, id: String): [Disease!]!
 }

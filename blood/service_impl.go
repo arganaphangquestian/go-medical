@@ -12,8 +12,8 @@ func NewService(r Repository) Service {
 }
 
 // AddBlood service implementation
-func (s *bloodService) AddBlood(ctx context.Context, name string, description string) error {
-	return s.AddBlood(ctx, name, description)
+func (s *bloodService) AddBlood(ctx context.Context, name string, rhesus bool, description string) error {
+	return s.AddBlood(ctx, name, rhesus, description)
 }
 
 // GetBloods service implementation

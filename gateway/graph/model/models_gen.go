@@ -2,19 +2,93 @@
 
 package model
 
-type NewTodo struct {
-	Text   string `json:"text"`
-	UserID string `json:"userId"`
+import (
+	"time"
+)
+
+type Blood struct {
+	ID          string     `json:"id"`
+	Name        string     `json:"name"`
+	Rhesus      bool       `json:"rhesus"`
+	Description *string    `json:"description"`
+	CreatedAt   *time.Time `json:"createdAt"`
 }
 
-type Todo struct {
-	ID   string `json:"id"`
-	Text string `json:"text"`
-	Done bool   `json:"done"`
-	User *User  `json:"user"`
+type Disease struct {
+	ID          string     `json:"id"`
+	Name        string     `json:"name"`
+	Description *string    `json:"description"`
+	CreatedAt   *time.Time `json:"createdAt"`
+}
+
+type Gender struct {
+	ID          string     `json:"id"`
+	Name        string     `json:"name"`
+	Description *string    `json:"description"`
+	CreatedAt   *time.Time `json:"createdAt"`
+}
+
+type History struct {
+	ID        string     `json:"id"`
+	UserID    string     `json:"userID"`
+	DiseaseID string     `json:"diseaseID"`
+	Note      *string    `json:"note"`
+	CreatedAt *time.Time `json:"createdAt"`
+}
+
+type InputBlood struct {
+	Name        string  `json:"name"`
+	Rhesus      bool    `json:"rhesus"`
+	Description *string `json:"description"`
+}
+
+type InputDisease struct {
+	Name        string  `json:"name"`
+	Description *string `json:"description"`
+}
+
+type InputGender struct {
+	Name        string  `json:"name"`
+	Description *string `json:"description"`
+}
+
+type InputHistory struct {
+	UserID    string  `json:"userID"`
+	DiseaseID string  `json:"diseaseID"`
+	Note      *string `json:"note"`
+}
+
+type InputRole struct {
+	Name        string  `json:"name"`
+	Description *string `json:"description"`
+}
+
+type InputUser struct {
+	Name        string  `json:"name"`
+	Email       string  `json:"email"`
+	Address     string  `json:"address"`
+	RoleID      string  `json:"roleID"`
+	GenderID    string  `json:"genderID"`
+	BloodID     string  `json:"bloodID"`
+	BirthOfDate *string `json:"birthOfDate"`
+	Contact     *string `json:"contact"`
+}
+
+type Role struct {
+	ID          string     `json:"id"`
+	Name        string     `json:"name"`
+	Description *string    `json:"description"`
+	CreatedAt   *time.Time `json:"createdAt"`
 }
 
 type User struct {
-	ID   string `json:"id"`
-	Name string `json:"name"`
+	ID          string  `json:"id"`
+	Name        string  `json:"name"`
+	Email       string  `json:"email"`
+	Address     string  `json:"address"`
+	RoleID      string  `json:"roleID"`
+	GenderID    string  `json:"genderID"`
+	BloodID     string  `json:"bloodID"`
+	BirthOfDate *string `json:"birthOfDate"`
+	Contact     *string `json:"contact"`
 }

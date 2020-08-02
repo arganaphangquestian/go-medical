@@ -25,7 +25,7 @@ func ListenGRPC(s Service, port int) error {
 }
 
 func (s *grpcServer) AddBlood(ctx context.Context, r *proto.AddBloodRequest) (*proto.AddBloodResponse, error) {
-	err := s.service.AddBlood(ctx, r.Name, r.Description)
+	err := s.service.AddBlood(ctx, r.Name, r.Rhesus, r.Description)
 	if err != nil {
 		return nil, err
 	}

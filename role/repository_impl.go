@@ -2,20 +2,23 @@ package role
 
 import (
 	"context"
-	"database/sql"
+	"github.com/jackc/pgx/v4"
+	"time"
 )
 
 type postgresRepository struct {
-	db *sql.DB
+	db *pgx.Conn
 }
 
 // NewPostgres methods
 func NewPostgres(url string) (Repository, error) {
-	db, err := sql.Open("postgres", url)
+	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
+	defer cancel()
+	db, err := pgx.Connect(context.Background(), url)
 	if err != nil {
 		return nil, err
 	}
-	err = db.Ping()
+	err = db.Ping(ctx)
 	if err != nil {
 		return nil, err
 	}
@@ -23,7 +26,7 @@ func NewPostgres(url string) (Repository, error) {
 }
 
 func (r *postgresRepository) Close() {
-	_ = r.db.Close()
+	_ = r.db.Close(context.Background())
 }
 
 // AddRole repository implementation
@@ -32,13 +35,13 @@ func (r *postgresRepository) AddRole(ctx context.Context, name string, descripti
 		Name:        name,
 		Description: description,
 	}
-	_, err := r.db.ExecContext(ctx, "INSERT INTO roles(name, description) VALUES($1, $2)", a.Name, a.Description)
+	_, err := r.db.Query(ctx, "INSERT INTO roles(name, description) VALUES($1, $2)", a.Name, a.Description)
 	return err
 }
 
 // GetRoles repository implementation
 func (r *postgresRepository) GetRoles(ctx context.Context) ([]Role, error) {
-	rows, err := r.db.QueryContext(
+	rows, err := r.db.Query(
 		ctx,
 		"SELECT id, name, description FROM roles",
 	)
@@ -63,7 +66,7 @@ func (r *postgresRepository) GetRoles(ctx context.Context) ([]Role, error) {
 // GetRoleByID repository implementation
 func (r *postgresRepository) GetRoleByID(ctx context.Context, id string) (*Role, error) {
 	a := &Role{}
-	row := r.db.QueryRow(`SELECT id, name, description FROM roles WHERE id=$1;`, id)
+	row := r.db.QueryRow(ctx, `SELECT id, name, description FROM roles WHERE id=$1;`, id)
 
 	err := row.Scan(&a.ID, &a.Name, &a.Description)
 

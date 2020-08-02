@@ -2,20 +2,23 @@ package blood
 
 import (
 	"context"
-	"database/sql"
+	"github.com/jackc/pgx/v4"
+	"time"
 )
 
 type postgresRepository struct {
-	db *sql.DB
+	db *pgx.Conn
 }
 
 // NewPostgres methods
 func NewPostgres(url string) (Repository, error) {
-	db, err := sql.Open("postgres", url)
+	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
+	defer cancel()
+	db, err := pgx.Connect(context.Background(), url)
 	if err != nil {
 		return nil, err
 	}
-	err = db.Ping()
+	err = db.Ping(ctx)
 	if err != nil {
 		return nil, err
 	}
@@ -23,22 +26,23 @@ func NewPostgres(url string) (Repository, error) {
 }
 
 func (r *postgresRepository) Close() {
-	r.db.Close()
+	_ = r.db.Close(context.Background())
 }
 
 // AddBlood repository implementation
-func (r *postgresRepository) AddBlood(ctx context.Context, name string, description string) error {
+func (r *postgresRepository) AddBlood(ctx context.Context, name string, rhesus bool, description string) error {
 	a := &Blood{
 		Name:        name,
+		Rhesus:      rhesus,
 		Description: description,
 	}
-	_, err := r.db.ExecContext(ctx, "INSERT INTO bloods(name, description) VALUES($1, $2)", a.Name, a.Description)
+	_, err := r.db.Query(ctx, "INSERT INTO bloods(name, rhesus, description) VALUES($1, $2, $3)", a.Name, a.Rhesus, a.Description)
 	return err
 }
 
 // GetBloods repository implementation
 func (r *postgresRepository) GetBloods(ctx context.Context) ([]Blood, error) {
-	rows, err := r.db.QueryContext(
+	rows, err := r.db.Query(
 		ctx,
 		"SELECT id, name, description FROM bloods",
 	)
@@ -47,7 +51,7 @@ func (r *postgresRepository) GetBloods(ctx context.Context) ([]Blood, error) {
 	}
 	defer rows.Close()
 
-	bloods := []Blood{}
+	var bloods []Blood
 	for rows.Next() {
 		a := &Blood{}
 		if err = rows.Scan(&a.ID, &a.Name, &a.Description); err == nil {
@@ -63,7 +67,7 @@ func (r *postgresRepository) GetBloods(ctx context.Context) ([]Blood, error) {
 // GetBloodByID repository implementation
 func (r *postgresRepository) GetBloodByID(ctx context.Context, id string) (*Blood, error) {
 	a := &Blood{}
-	row := r.db.QueryRow(`SELECT id, name, description FROM bloods WHERE id=$1;`, id)
+	row := r.db.QueryRow(ctx, `SELECT id, name, description FROM bloods WHERE id=$1;`, id)
 
 	err := row.Scan(&a.ID, &a.Name, &a.Description)
 

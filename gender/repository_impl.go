@@ -2,20 +2,23 @@ package gender
 
 import (
 	"context"
-	"database/sql"
+	"github.com/jackc/pgx/v4"
+	"time"
 )
 
 type postgresRepository struct {
-	db *sql.DB
+	db *pgx.Conn
 }
 
 // NewPostgres methods
 func NewPostgres(url string) (Repository, error) {
-	db, err := sql.Open("postgres", url)
+	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
+	defer cancel()
+	db, err := pgx.Connect(context.Background(), url)
 	if err != nil {
 		return nil, err
 	}
-	err = db.Ping()
+	err = db.Ping(ctx)
 	if err != nil {
 		return nil, err
 	}
@@ -23,7 +26,7 @@ func NewPostgres(url string) (Repository, error) {
 }
 
 func (r *postgresRepository) Close() {
-	r.db.Close()
+	_ = r.db.Close(context.Background())
 }
 
 // AddGender repository implementation
@@ -32,13 +35,13 @@ func (r *postgresRepository) AddGender(ctx context.Context, name string, descrip
 		Name:        name,
 		Description: description,
 	}
-	_, err := r.db.ExecContext(ctx, "INSERT INTO genders(name, description) VALUES($1, $2)", a.Name, a.Description)
+	_, err := r.db.Query(ctx, "INSERT INTO genders(name, description) VALUES($1, $2)", a.Name, a.Description)
 	return err
 }
 
 // GetGenders repository implementation
 func (r *postgresRepository) GetGenders(ctx context.Context) ([]Gender, error) {
-	rows, err := r.db.QueryContext(
+	rows, err := r.db.Query(
 		ctx,
 		"SELECT id, name, description FROM genders",
 	)
@@ -47,7 +50,7 @@ func (r *postgresRepository) GetGenders(ctx context.Context) ([]Gender, error) {
 	}
 	defer rows.Close()
 
-	genders := []Gender{}
+	var genders []Gender
 	for rows.Next() {
 		a := &Gender{}
 		if err = rows.Scan(&a.ID, &a.Name, &a.Description); err == nil {
@@ -63,7 +66,7 @@ func (r *postgresRepository) GetGenders(ctx context.Context) ([]Gender, error) {
 // GetGenderByID repository implementation
 func (r *postgresRepository) GetGenderByID(ctx context.Context, id string) (*Gender, error) {
 	a := &Gender{}
-	row := r.db.QueryRow(`SELECT id, name, description FROM genders WHERE id=$1;`, id)
+	row := r.db.QueryRow(ctx, `SELECT id, name, description FROM genders WHERE id=$1;`, id)
 
 	err := row.Scan(&a.ID, &a.Name, &a.Description)
 
